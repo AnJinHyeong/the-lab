@@ -14,21 +14,34 @@ React, TypeScript, 상태 관리, 디자인 시스템, 퍼포먼스 최적화까
 
 ---
 
-## 🧪 현재 실험 주제 #1: 프로젝트 내 Storybook 연동
+## 🧪 현재 실험 주제 #1: Storybook을 정적 빌드하여 `/storybook`으로 연동
 
 ### 🎯 목표
 
-`the-lab` 프로젝트 안에 직접 Storybook을 설치하고,  
-`npm run storybook` 명령어로 실행 시  
-`http://localhost:6006` 또는 `http://localhost:3000/storybook` 경로로 접근 가능하게 만든다.
+- `the-lab` 프로젝트 안에 Storybook을 설치하고
+- `storybook-static` 파일을 생성한 뒤 `public/storybook`에 복사
+- 이후 `npm run start` 명령어만으로  
+  `http://localhost:3000/storybook/` 경로에서 Storybook UI 접근 가능하게 구성
 
 ### 📦 실험 항목
 
-- `@storybook/react` + `@storybook/addon` 등 필수 패키지 설치
-- TypeScript + CRA 환경에서 Storybook 기본 설정 구성
-- `.storybook/main.ts`, `preview.ts` 구성
-- `npm run storybook` 실행으로 로컬에서 Storybook 확인
-- 필요시 `/storybook` 경로로 Proxy 또는 정적 호스팅 연동 실험
+1. Storybook 설치 및 기본 설정
+2. `npm run build-storybook`으로 static 파일 생성
+3. 생성된 `storybook-static/` 디렉토리를 `/public/storybook`으로 복사
+4. CRA 서버 실행 시 `/storybook` 경로에서 Storybook 사용
 
-### 📁 실험 디렉토리
+---
 
+## 🛠 실행 명령어
+
+```bash
+# 1. Storybook static 파일 생성
+npm run build-storybook
+
+# 2. 생성된 폴더를 public에 복사
+mv storybook-static ./public/storybook
+
+# 3. CRA 개발 서버 실행
+npm run start
+
+# ✅ 결과: http://localhost:3000/storybook 에서 Storybook 확인 가능
